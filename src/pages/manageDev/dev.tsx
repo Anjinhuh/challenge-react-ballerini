@@ -18,7 +18,54 @@ import './devpage.css'
 
 export default function Dev(){
     return(
+        
         <div className="App">
+            <div id='inactive' className='modal-delete-dev'>
+
+                <div className='modal-delete-box'>
+                    <div className='modal-delete-text'>
+                        <p className='modal-text-inf'>Deletar desenvolvedor</p>
+                        <p className='modal-text-confirm'>Tem certeza que deseja deletar esse desenvolvedor?</p>
+                    </div>
+                    <div className='modal-button'>
+                        <button className='modal-button-cancel'>Cancelar</button>
+                        <button className='modal-button-delete'>Deletar</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="inactive" className='model-add-dev'>
+                <div className='modal-add-box'>
+                    <p>Adicionar desenvolvedor</p>
+                    <div className='modal-add-div'>
+                        <p>Nome</p>
+                        <input  />
+                    </div>
+                    <div className='modal-add-div'>
+                        <p>Avatar</p>
+                        <input/>
+                    </div>
+                    <div className='modal-add-div'>
+                        <p>Cargo</p>
+                        <input/>
+                    </div>
+                    <div className='modal-add-div'>
+                        <p>Github</p>
+                        <input/>
+                    </div>
+                    <div className='modal-add-div'>
+                        <p>Linkedin</p>
+                        <input/>
+                    </div>
+
+                    <div className='modal-add-button'>
+                        <button className='modal-add-button-cancel'>Cancelar</button>
+                        <button className='modal-add-button-confirm'>Adicionar</button>
+                    </div>
+                </div>
+                
+            </div>
             <header className='headerDev'>
                 <div className='headerContent'>
                     <div className='iconesDev'>
