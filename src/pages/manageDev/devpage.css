@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500&display=swap');
+
+.headerDev{
+    width: 100vw;
+  
+        
+    padding: 2rem 6rem 0 6rem;
+    align-content: space-between;
+}
+.headerContent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.inputBusca{
+    width: 28.47rem;
+    height: 4.5rem;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    padding: 0 0rem 0 0.8rem;
+    
+}
+.inputBusca > img{
+    width: 2.2rem;
+
+}
+.inputBusca > input{
+    width: 28.47rem;
+    height: 4.5rem;
+    border-radius: 20px;
+    display: flex;
+    font-size: 2rem;
+    color: black;
+    padding-left: 1rem;
+}
+.inputBusca > input:focus{
+    border: 0 none;
+    outline: 0;
+}
+.inputBusca > input::placeholder{
+    color: black;
+
+    display: flex;
+    text-align: left;
+    height: 4.5rem;
+    font-size: 2rem;
+    padding-left: 1rem;
+}
+.iconesDev{
+    width: 28.47rem;
+}
+.iconesDev > img{
+    margin-right: 10px;
+}
+.buttonHeader{
+
+}
+.buttonHeader > button{
+    background-color: #27AE60;
+    width: 15rem;
+    height: 3rem;
+    margin-left: -8rem;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+.devMain{
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 10rem 
+}
+.devBox{
+    width: 30rem;
+    height: 47.3rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.devDetails{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0.14);
+
+    color: #fff;
+
+    padding: 4rem 2rem;
+    border-radius: 10px;
+    
+}
+.devDetails > img{
+    width: 13.5rem;
+    height: 13.5rem;
+
+}
+.devUtils{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+.devUtils > img{
+    width: 3rem;
+    height: 3.5rem;
+    margin: 2rem 0;
+}
+.devUtils > button{
+    width: 15rem;
+    height: 5rem;
+    background-color: #27AE60;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 2rem;
+}
+.lineGreen{
+    width: 30%;
+    height: 2rem;
+    border: #27AE60 1px solid;
+    margin: 2rem 0;
+}
+.name{
+    font-size: 2.5rem;
+}
+.job{
+    font-size: 1.5rem;
+}
+.devButtons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding: 0 2rem;
+}
+.devButtons > button{
+    font-size: 1.4rem;
+    color: #000;
+    width: 10.5rem;
+    height: 3rem;
+    border-radius: 30px;
+} 
+.devButtons > .editButton{
+    background-color: #DBB801;
+}
+.devButtons > .deleteButton{
+    background-color: #F42626;
+}
+.buttonLeftRight{
+    width: 4rem;
+    height: 4rem;
+}
