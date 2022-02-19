@@ -5,6 +5,10 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 3000
 
+const db = require('./sql/connection')
+
+db.getUser()
+
 app.use(require("cors")())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
