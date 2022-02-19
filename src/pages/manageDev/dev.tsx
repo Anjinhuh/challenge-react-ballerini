@@ -16,7 +16,10 @@ import right from '../../img/continueright.svg'
 
 import './devpage.css'
 
+import api from '../../api/api'
+
 export default function Dev(){
+    
     return(
         
         <div className="App">
