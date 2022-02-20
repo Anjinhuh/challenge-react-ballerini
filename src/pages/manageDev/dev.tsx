@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 import linkedin from '../../img/linkedin.svg'
 
@@ -19,6 +19,13 @@ import './devpage.css'
 import api from '../../api/api'
 
 export default function Dev(){
+    const [dev, setDev] = useState([])
+
+    useEffect(() =>{
+        api.get('/developers').then(async x =>{
+            await setDev(x.data)
+        })
+    }, [])
     
     return(
         
@@ -129,25 +136,9 @@ export default function Dev(){
                             </div>
                         </div>
 
-                        <div className='devBox'>
-                            <div className='devDetails'>
-                                <img src={devBale} />
-                                <div className='lineGreen'></div>
-                                <p className='name'>Rafaella Ballerini</p>
-                                <p className='job'>Instrutora Front-End</p>
-                                <div className='devUtils'>
-                                    <img src={github} />
-                                    <img src={likedinWhite} />
-                                    <button>Ver mais</button>
-                                </div>
-                            </div>
-                            <div className='devButtons'>
-                                <button className='editButton'>Editar</button>
-                                <button className='deleteButton'>Deletar</button>
-                            </div>
-                        </div>
                     <img className='buttonLeftRight' src={right} />
             </main>
+            {dev.map( (developer) => <p>{developer['nome']}</p> )}
         </div>
         
     )

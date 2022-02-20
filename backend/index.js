@@ -7,15 +7,16 @@ const port = process.env.PORT || 3000
 
 const db = require('./sql/connection')
 
-db.getUser()
+
 
 app.use(require("cors")())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
-app.get('/', (req, res) =>{
-        res.send('HELLO WORLD')
-}) 
+ 
+app.get('/developers', async (req, res) =>{
+    await db.getUser(req, res)
+})
 
 app.listen(port, () =>{
         console.info(`Aplicação rodando na porta ${port}!`)
