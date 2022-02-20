@@ -18,7 +18,15 @@ import './devpage.css'
 
 import api from '../../api/api'
 
+
+function adicionaModal(){
+    const modal = document.querySelector('.modal-add-dev')
+    const actSty =  modal?.getAttribute
+    console.log(actSty)
+}
+
 export default function Dev(){
+     
     const [dev, setDev] = useState([])
 
     useEffect(() =>{
@@ -30,7 +38,7 @@ export default function Dev(){
     return(
         
         <div className="App">
-            <div id='inactive' className='modal-delete-dev'>
+            <div className='modal-delete-dev inactive'>
 
                 <div className='modal-delete-box'>
                     <div className='modal-delete-text'>
@@ -45,7 +53,7 @@ export default function Dev(){
 
             </div>
 
-            <div id="inactive" className='model-add-dev'>
+            <div className='model-add-dev inactive'>
                 <div className='modal-add-box'>
                     <p>Adicionar desenvolvedor</p>
                     <div className='modal-add-div'>
@@ -93,19 +101,21 @@ export default function Dev(){
                         <input placeholder='Buscar' />
                     </div>
                     <div className='buttonHeader'>
-                        <button>Adicionar dev</button>
+                        <button onClick={() => {adicionaModal()}}>Adicionar dev</button>
                     </div>
                 </div>
             </header>
 
             <main className='devMain'>
                     <img className='buttonLeftRight' src={left} />
+
+                    {dev.map( (developer) =>
                         <div className='devBox'>
                             <div className='devDetails'>
                                 <img src={devBale} />
                                 <div className='lineGreen'></div>
-                                <p className='name'>Rafaella Ballerini</p>
-                                <p className='job'>Instrutora Front-End</p>
+                                <p className='name'>{developer['nome']}</p>
+                                <p className='job'>{developer['prof']}</p>
                                 <div className='devUtils'>
                                     <img src={github} />
                                     <img src={likedinWhite} />
@@ -117,28 +127,10 @@ export default function Dev(){
                                 <button className='deleteButton'>Deletar</button>
                             </div>
                         </div>
-
-                        <div className='devBox'>
-                            <div className='devDetails'>
-                                <img src={devBale} />
-                                <div className='lineGreen'></div>
-                                <p className='name'>Rafaella Ballerini</p>
-                                <p className='job'>Instrutora Front-End</p>
-                                <div className='devUtils'>
-                                    <img src={github} />
-                                    <img src={likedinWhite} />
-                                    <button>Ver mais</button>
-                                </div>
-                            </div>
-                            <div className='devButtons'>
-                                <button className='editButton'>Editar</button>
-                                <button className='deleteButton'>Deletar</button>
-                            </div>
-                        </div>
-
+                    )}
                     <img className='buttonLeftRight' src={right} />
             </main>
-            {dev.map( (developer) => <p>{developer['nome']}</p> )}
+            
         </div>
         
     )
