@@ -232,7 +232,7 @@
     color: #fff;
 }
 .modal-add-box{
-    display: flex;
+    text-align: center;
     flex-direction: column;
     padding: 3rem 0;
     align-items: center;

@@ -18,7 +18,7 @@ import './devpage.css'
 
 import api from '../../api/api'
 
-
+// NECESSITA DE ADICIONAR DEV E COLOCAR PARA VER MAIS
 function adicionaModal(){
     const modal = document.querySelector('.modal-add-dev')
     const actSty =  modal?.getAttribute
@@ -53,7 +53,7 @@ export default function Dev(){
 
             </div>
 
-            <div className='model-add-dev inactive'>
+            <div className='inactive '>
                 <div className='modal-add-box'>
                     <p>Adicionar desenvolvedor</p>
                     <div className='modal-add-div'>

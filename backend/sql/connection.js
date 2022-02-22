@@ -2,6 +2,8 @@ const { prototype } = require('events')
 const mysql = require('mysql')
 var contagem = 0
 var arr = []
+// NECESSITA DE ADICIONAR DEV E COLOCAR PARA VER MAIS
+
 const con = mysql.createConnection({
     user: 'root',
     port: 3306,

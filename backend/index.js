@@ -12,6 +12,7 @@ const db = require('./sql/connection')
 app.use(require("cors")())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
+// NECESSITA DE ADICIONAR DEV E COLOCAR PARA VER MAIS
 
  
 app.get('/developers', async (req, res) =>{

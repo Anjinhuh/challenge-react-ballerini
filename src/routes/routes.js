@@ -4,6 +4,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
 import landing from '../pages/landingPage/landing'
 import devPage from '../pages/manageDev/dev'
+// NECESSITA DE ADICIONAR DEV E COLOCAR PARA VER MAIS
 
 export default function Routes(){
     return(
