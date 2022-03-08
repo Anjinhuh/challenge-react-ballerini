@@ -239,7 +239,7 @@
     width: 25%;
     height: 70%;
     border-radius: 20px;
-
+    position: absolute;
     background-color: #343333;
     
 }
