@@ -9,7 +9,7 @@ import lupa from '../../img/lupa.svg'
 import devBale from '../../img/rafaDev.svg'
 
 import likedinWhite from '../../img/linkedinWhite.svg'
-import github from '../../img/githu.svg'
+import githubLogo from '../../img/githu.svg'
 
 import left from '../../img/backleft.svg'
 import right from '../../img/continueright.svg'
@@ -23,6 +23,12 @@ import api from '../../api/api'
 
 export default function Dev(){
     const [modal, setModal] = useState(Boolean)
+    const [nome, setNome] = useState(String)
+    const [avatar, setAvatar] = useState(String)
+    const [ocupacao, setOcupacao] = useState(String)
+    const [github, setGithub] = useState(String)
+    const [linkedin, setLinkedin] = useState(String)
+    
     function modifyModal(){
         setModal(true)
         if(modal == true){
@@ -31,6 +37,19 @@ export default function Dev(){
             setModal(true)
         }
     } 
+    function enviaUser(nome: String, avatar: String, ocupacao:String, github:String, linkedin:String){
+        api.post('/createUser',{
+            nameModal: nome,
+            avatarModal: avatar,
+            ocupacaoModal: ocupacao,
+            githubModal: github,
+            linkedinModal: linkedin
+        }).then(res =>{
+            console.log(res.data)
+        }).catch(err =>{
+            console.log(err)
+        })
+    }
     const [dev, setDev] = useState([])
 
     useEffect(() =>{
@@ -64,28 +83,28 @@ export default function Dev(){
                     <p>Adicionar desenvolvedor</p>
                     <div className='modal-add-div'>
                         <p>Nome</p>
-                        <input  />
+                        <input onChange={(e) =>{setNome(e.target.value)}} id="modal-nome" />
                     </div>
                     <div className='modal-add-div'>
                         <p>Avatar</p>
-                        <input/>
+                        <input onChange={(e) =>{setAvatar(e.target.value)}} id="modal-link-avatar" />
                     </div>
                     <div className='modal-add-div'>
                         <p>Ocupação</p>
-                        <input/>
+                        <input onChange={(e) =>{setOcupacao(e.target.value)}} id="modal-ocupacao"/>
                     </div>
                     <div className='modal-add-div'>
                         <p>Github</p>
-                        <input/>
+                        <input onChange={(e) =>{setGithub(e.target.value)}} id="modal-github" />
                     </div>
                     <div className='modal-add-div'>
                         <p>Linkedin</p>
-                        <input/>
+                        <input onChange={(e) =>{setLinkedin(e.target.value)}} id="modal-linkedin" />
                     </div>
 
                     <div className='modal-add-button'>
                         <button className='modal-add-button-cancel' onClick={() => {modifyModal()}}>Cancelar</button>
-                        <button className='modal-add-button-confirm'>Adicionar</button>
+                        <button className='modal-add-button-confirm' onClick={() =>{enviaUser(nome, avatar, ocupacao, github, linkedin)}}>Adicionar</button>
                     </div>
                 </div>
             </div>
@@ -128,8 +147,8 @@ export default function Dev(){
                                 <p className='name'>{developer['nome']}</p>
                                 <p className='job'>{developer['prof']}</p>
                                 <div className='devUtils'>
-                                    <img src={github} />
-                                    <img src={likedinWhite} />
+                                    <a href={developer['git']}><img src={githubLogo} /></a>
+                                    <a href={developer['linke']}><img src={likedinWhite} /></a>
                                     <button>Ver mais</button>
                                 </div>
                             </div>

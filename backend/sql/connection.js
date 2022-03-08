@@ -11,8 +11,8 @@ const con = mysql.createConnection({
 })
 
 module.exports = {
-    createUser(){
-        con.query("INSERT INTO developers (nome, profissao) VALUES ('juliano', 'engenheiro') ")
+    createUser(requi, resi){
+        con.query(`INSERT INTO developers (nome, profissao, avatar, github, linkedin) VALUES ('${requi.body.nameModal}','${requi.body.ocupacaoModal}','${requi.body.avatarModal}','${requi.body.githubModal}','${requi.body.linkedinModal}') `)
     },
    async getUser(req, res){
        
@@ -24,7 +24,7 @@ module.exports = {
         const rows = await con.query("SELECT * FROM developers", async function(err, res, field){
             if(err) throw err;
             for(var i = 0; i < contagem; i++){
-               arr.push( {nome: res[i].nome,  prof: res[i].profissao} )
+               arr.push( {nome: res[i].nome,  prof: res[i].profissao, git: res[i].github, linke: res[i].linkedin} )
             }
         })
         await res.send(arr)

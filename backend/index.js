@@ -18,6 +18,9 @@ app.use(bodyParser.json())
 app.get('/developers', async (req, res) =>{
     await db.getUser(req, res)
 })
+app.post('/createUser', async(req, res)=>{
+    db.createUser(req, res)
+})
 
 app.listen(port, () =>{
         console.info(`Aplicação rodando na porta ${port}!`)
