@@ -112,6 +112,9 @@
 .devDetails > img{
     width: 13.5rem;
     height: 13.5rem;
+    border-radius: 50px;
+    border: #27AE60 2px solid;
+
 
 }
 .devUtils{
@@ -137,7 +140,7 @@
 }
 .lineGreen{
     width: 30%;
-    height: 2rem;
+
     border: #27AE60 1px solid;
     margin: 2rem 0;
 }

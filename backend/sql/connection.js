@@ -31,7 +31,7 @@ module.exports = {
         const rows = await con.query("SELECT * FROM developers", async function(err, res, field){
             if(err) throw err;
             for(var i = 0; i < contagem; i++){
-               arr.push( {nome: res[i].nome,  prof: res[i].profissao, git: res[i].github, linke: res[i].linkedin} )
+               arr.push( {nome: res[i].nome,avat: res[i].avatar,  prof: res[i].profissao, git: res[i].github, linke: res[i].linkedin} )
             }
             await rese.send(arr)
         })

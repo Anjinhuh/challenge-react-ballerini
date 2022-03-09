@@ -20,7 +20,7 @@ import './devpage.css'
 import api from '../../api/api'
 
 
-// NECESSITA DE ADICIONAR DEV E COLOCAR PARA VER MAIS
+
 
 
 export default function Dev(){
@@ -174,7 +174,7 @@ export default function Dev(){
                             
                             <div className='devBox'>
                                 <div className='devDetails'>
-                                    <img src={devBale} />
+                                    <img src={developer['avat']}  />
                                     <div className='lineGreen'></div>
                                     <p className='name'>{developer['nome']}</p>
                                     <p className='job'>{developer['prof']}</p>
