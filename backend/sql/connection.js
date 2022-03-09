@@ -19,6 +19,7 @@ module.exports = {
             return
         }
         console.log(requi.body.deleteDevName)
+        
         con.query(`DELETE FROM developers WHERE nome='${requi.body.deleteDevName}'`)
     },
    async getUser(req, rese){

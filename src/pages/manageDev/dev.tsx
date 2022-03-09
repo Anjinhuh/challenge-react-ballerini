@@ -20,23 +20,18 @@ import './devpage.css'
 import api from '../../api/api'
 
 
+import ModalAddDev from './model/modalAddDev';
+import ModalDeleteDev from './model/modalDeleteDev'
 
 
 
 export default function Dev(){
     const [dev, setDev] = useState([])
-    const [nameDev, setNameDev] = useState('Oie'); 
+    const [nameDev, setNameDev] = useState(String); 
 
     const [modal, setModal] = useState(Boolean) 
     const [modalDelete, setModalDelete] = useState(Boolean) 
 
-
-    const [nome, setNome] = useState(String)
-    const [avatar, setAvatar] = useState(String)
-    const [ocupacao, setOcupacao] = useState(String)
-    const [github, setGithub] = useState(String)
-    const [linkedin, setLinkedin] = useState(String)
-    
     function modifyModal(){
         setModal(true)
         if(modal === true){
@@ -45,27 +40,6 @@ export default function Dev(){
             setModal(true)
         }
     } 
-    function enviaUser(nome: String, avatar: String, ocupacao:String, github:String, linkedin:String){
-        api.post('/createUser',{
-            nameModal: nome,
-            avatarModal: avatar,
-            ocupacaoModal: ocupacao,
-            githubModal: github,
-            linkedinModal: linkedin
-        }).then(res =>{
-            console.log(res.data)
-        }).catch(err =>{
-            console.log(err)
-        })
-        window.location.reload()
-
-    }
-    function deleteDev(nameDev:String){
-        api.post('/deleteDev', {
-            deleteDevName: nameDev 
-        })
-        window.location.reload()
-    }
     function modalDeleteDev(){
         setModalDelete(true)
         if(modalDelete === true){
@@ -74,10 +48,7 @@ export default function Dev(){
             setModalDelete(true)
         }
     }
-   
-        
-    
-    
+
     useEffect(() =>{
         api.get('/developers').then(x =>{
             setDev(x.data)
@@ -85,68 +56,22 @@ export default function Dev(){
     }, [])
     
     return(
-        
         <div className="App">
-            {modalDelete ? 
-                <div className='modal-delete-dev'>
-
-                    <div className='modal-delete-box'>
-                        <div className='modal-delete-text'>
-                            <p className='modal-text-inf'>Deletar desenvolvedor</p>
-                            <p className='modal-text-confirm'>Tem certeza que deseja deletar esse desenvolvedor?</p>
-                        </div>
-                        <div className='modal-button'>
-                            <button className='modal-button-cancel' onClick={() => {modalDeleteDev()}}>Cancelar</button>
-                            <button className='modal-button-delete' onClick={async (e) => {deleteDev(nameDev)}}>Deletar</button>
-                        </div>
-                    </div>
-
-                </div>   
-                :      
+            { modalDelete 
+                                ? 
+                <ModalDeleteDev {...nameDev} ></ModalDeleteDev>
+                               :      
                 <div className='inactive '>
                 </div>   
-        }
-
-                {modal 
-                    ? 
-            <div className='model-add-dev'>
-                <div className='modal-add-box'>
-                    <p>Adicionar desenvolvedor</p>
-                    <div className='modal-add-div'>
-                        <p>Nome</p>
-                        <input onChange={(e) =>{setNome(e.target.value)}} id="modal-nome" />
-                    </div>
-                    <div className='modal-add-div'>
-                        <p>Avatar</p>
-                        <input onChange={(e) =>{setAvatar(e.target.value)}} id="modal-link-avatar" />
-                    </div>
-                    <div className='modal-add-div'>
-                        <p>Ocupação</p>
-                        <input onChange={(e) =>{setOcupacao(e.target.value)}} id="modal-ocupacao"/>
-                    </div>
-                    <div className='modal-add-div'>
-                        <p>Github</p>
-                        <input onChange={(e) =>{setGithub(e.target.value)}} id="modal-github" />
-                    </div>
-                    <div className='modal-add-div'>
-                        <p>Linkedin</p>
-                        <input onChange={(e) =>{setLinkedin(e.target.value)}} id="modal-linkedin" />
-                    </div>
-
-                    <div className='modal-add-button'>
-                        <button className='modal-add-button-cancel' onClick={() => {modifyModal()}}>Cancelar</button>
-                        <button className='modal-add-button-confirm' onClick={() =>{enviaUser(nome, avatar, ocupacao, github, linkedin)}}>Adicionar</button>
-                    </div>
+            }
+            { modal 
+                                ? 
+                <ModalAddDev></ModalAddDev>
+                                : 
+                <div className='inactive '>
                 </div>
-            </div>
-                    : 
-            <div className='inactive '>
-            </div>
                 }
-            
-            
-
-            
+                
             <header className='headerDev'>
                 <div className='headerContent'>
                     <div className='iconesDev'>
