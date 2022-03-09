@@ -20,8 +20,8 @@ import './devpage.css'
 import api from '../../api/api'
 
 
-import ModalAddDev from './model/modalAddDev';
-import ModalDeleteDev from './model/modalDeleteDev'
+import ModalAddDev from '../model/modalAddDev';
+import ModalDeleteDev from '../model/modalDeleteDev'
 
 
 
