@@ -22,6 +22,9 @@ import api from '../../api/api'
 
 
 export default function Dev(){
+    const [dev, setDev] = useState([])
+    const [nameDev, setNameDev] = useState(String); 
+
     const [modal, setModal] = useState(Boolean)
     const [nome, setNome] = useState(String)
     const [avatar, setAvatar] = useState(String)
@@ -50,8 +53,12 @@ export default function Dev(){
             console.log(err)
         })
     }
-    const [dev, setDev] = useState([])
-
+    function deleteDev(nameDev:String){
+        api.post('/deleteDev', {
+            deleteDevName: nameDev 
+        })
+    }
+ 
     useEffect(() =>{
         api.get('/developers').then(async x =>{
             await setDev(x.data)
@@ -140,6 +147,7 @@ export default function Dev(){
                     <img className='buttonLeftRight' src={left} />
 
                     {dev.map( (developer) =>
+                        
                         <div className='devBox'>
                             <div className='devDetails'>
                                 <img src={devBale} />
@@ -154,7 +162,7 @@ export default function Dev(){
                             </div>
                             <div className='devButtons'>
                                 <button className='editButton'>Editar</button>
-                                <button className='deleteButton'>Deletar</button>
+                                <button className='deleteButton' onClick={() => {setNameDev(developer['nome']); deleteDev(nameDev);}} >Deletar</button>
                             </div>
                         </div>
                     )}

@@ -14,7 +14,13 @@ module.exports = {
     createUser(requi, resi){
         con.query(`INSERT INTO developers (nome, profissao, avatar, github, linkedin) VALUES ('${requi.body.nameModal}','${requi.body.ocupacaoModal}','${requi.body.avatarModal}','${requi.body.githubModal}','${requi.body.linkedinModal}') `)
     },
-   async getUser(req, res){
+    deleteUser(requi, resi){
+        if(requi.body.deleteDevName == ''){
+            return
+        }
+        con.query(`DELETE FROM developers WHERE nome='${requi.body.deleteDevName}'`)
+    },
+   async getUser(req, rese){
        
        const result = con.query("SELECT COUNT('nome')AS contagem FROM developers", function(err, res, field){
            if(err) throw err;
@@ -26,8 +32,9 @@ module.exports = {
             for(var i = 0; i < contagem; i++){
                arr.push( {nome: res[i].nome,  prof: res[i].profissao, git: res[i].github, linke: res[i].linkedin} )
             }
+            await rese.send(arr)
         })
-        await res.send(arr)
+        
         arr.splice(0, arr.length)
     }
 }
