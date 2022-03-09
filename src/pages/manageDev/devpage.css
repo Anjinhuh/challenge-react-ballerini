@@ -70,7 +70,9 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    padding: 0 10rem 
+  
+    
+    
 }
 .devBox{
     width: 30rem;
@@ -78,9 +80,22 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin: 0 2rem;
+ 
+    
+}
+.organize-dev{  	position: relative;
+
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    padding: 0 5rem;
     
 }
 .devDetails{
+    
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -157,6 +172,8 @@
     height: 4rem;
 }
 .modal-delete-dev{
+    animation: showing .5s;
+
     background-color: rgba(0,0,0, 0.7);
     text-align: center;
     width: 100vw;
@@ -219,6 +236,7 @@
 }
 
 .model-add-dev{
+    animation: showing .5s;
     background-color: rgba(0,0,0, 0.7);
     width: 100vw;
     height: 100vh;
@@ -269,4 +287,14 @@
 }
 .modal-add-button-confirm{
     background-color: #27AE60;
+}
+
+
+@keyframes showing{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }

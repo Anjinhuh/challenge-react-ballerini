@@ -14,10 +14,11 @@ module.exports = {
     createUser(requi, resi){
         con.query(`INSERT INTO developers (nome, profissao, avatar, github, linkedin) VALUES ('${requi.body.nameModal}','${requi.body.ocupacaoModal}','${requi.body.avatarModal}','${requi.body.githubModal}','${requi.body.linkedinModal}') `)
     },
-    deleteUser(requi, resi){
+    async deleteUser(requi, resi){
         if(requi.body.deleteDevName == ''){
             return
         }
+        console.log(requi.body.deleteDevName)
         con.query(`DELETE FROM developers WHERE nome='${requi.body.deleteDevName}'`)
     },
    async getUser(req, rese){

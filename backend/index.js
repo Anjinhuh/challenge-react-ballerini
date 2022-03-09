@@ -22,7 +22,7 @@ app.post('/createUser', async(req, res)=>{
     db.createUser(req, res)
 })
 app.post('/deleteDev', async(req, res) =>{
-    db.deleteUser(req, res)
+   await db.deleteUser(req, res)
 } )
 app.listen(port, () =>{
         console.info(`Aplicação rodando na porta ${port}!`)

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
+import $ from 'jquery';
 
-import linkedin from '../../img/linkedin.svg'
+import linkedinLogo from '../../img/linkedin.svg'
 
 import discord from '../../img/discord.svg'
 import facebook from '../../img/facebook.svg'
@@ -18,14 +19,18 @@ import './devpage.css'
 
 import api from '../../api/api'
 
+
 // NECESSITA DE ADICIONAR DEV E COLOCAR PARA VER MAIS
 
 
 export default function Dev(){
     const [dev, setDev] = useState([])
-    const [nameDev, setNameDev] = useState(String); 
+    const [nameDev, setNameDev] = useState('Oie'); 
 
-    const [modal, setModal] = useState(Boolean)
+    const [modal, setModal] = useState(Boolean) 
+    const [modalDelete, setModalDelete] = useState(Boolean) 
+
+
     const [nome, setNome] = useState(String)
     const [avatar, setAvatar] = useState(String)
     const [ocupacao, setOcupacao] = useState(String)
@@ -34,9 +39,9 @@ export default function Dev(){
     
     function modifyModal(){
         setModal(true)
-        if(modal == true){
+        if(modal === true){
             setModal(false)
-        } else if(modal == false){
+        } else if(modal === false){
             setModal(true)
         }
     } 
@@ -52,37 +57,56 @@ export default function Dev(){
         }).catch(err =>{
             console.log(err)
         })
+        window.location.reload()
+
     }
     function deleteDev(nameDev:String){
         api.post('/deleteDev', {
             deleteDevName: nameDev 
         })
+        window.location.reload()
     }
- 
+    function modalDeleteDev(){
+        setModalDelete(true)
+        if(modalDelete === true){
+            setModalDelete(false)
+        } else if(modalDelete === false){
+            setModalDelete(true)
+        }
+    }
+   
+        
+    
+    
     useEffect(() =>{
-        api.get('/developers').then(async x =>{
-            await setDev(x.data)
+        api.get('/developers').then(x =>{
+            setDev(x.data)
         })
     }, [])
     
     return(
         
         <div className="App">
+            {modalDelete ? 
+                <div className='modal-delete-dev'>
 
-            <div className='modal-delete-dev inactive'>
-
-                <div className='modal-delete-box'>
-                    <div className='modal-delete-text'>
-                        <p className='modal-text-inf'>Deletar desenvolvedor</p>
-                        <p className='modal-text-confirm'>Tem certeza que deseja deletar esse desenvolvedor?</p>
+                    <div className='modal-delete-box'>
+                        <div className='modal-delete-text'>
+                            <p className='modal-text-inf'>Deletar desenvolvedor</p>
+                            <p className='modal-text-confirm'>Tem certeza que deseja deletar esse desenvolvedor?</p>
+                        </div>
+                        <div className='modal-button'>
+                            <button className='modal-button-cancel' onClick={() => {modalDeleteDev()}}>Cancelar</button>
+                            <button className='modal-button-delete' onClick={async (e) => {deleteDev(nameDev)}}>Deletar</button>
+                        </div>
                     </div>
-                    <div className='modal-button'>
-                        <button className='modal-button-cancel'>Cancelar</button>
-                        <button className='modal-button-delete'>Deletar</button>
-                    </div>
-                </div>
 
-            </div>
+                </div>   
+                :      
+                <div className='inactive '>
+                </div>   
+        }
+
                 {modal 
                     ? 
             <div className='model-add-dev'>
@@ -126,7 +150,7 @@ export default function Dev(){
             <header className='headerDev'>
                 <div className='headerContent'>
                     <div className='iconesDev'>
-                        <img src={linkedin} />
+                        <img src={linkedinLogo} />
                         <img src={discord} />
                         <img src={facebook} />
                     </div>
@@ -144,29 +168,31 @@ export default function Dev(){
             </header>
 
             <main className='devMain'>
-                    <img className='buttonLeftRight' src={left} />
-
-                    {dev.map( (developer) =>
-                        
-                        <div className='devBox'>
-                            <div className='devDetails'>
-                                <img src={devBale} />
-                                <div className='lineGreen'></div>
-                                <p className='name'>{developer['nome']}</p>
-                                <p className='job'>{developer['prof']}</p>
-                                <div className='devUtils'>
-                                    <a href={developer['git']}><img src={githubLogo} /></a>
-                                    <a href={developer['linke']}><img src={likedinWhite} /></a>
-                                    <button>Ver mais</button>
+                    
+                    <div className='organize-dev'>
+                        {dev.map( (developer) =>
+                            
+                            <div className='devBox'>
+                                <div className='devDetails'>
+                                    <img src={devBale} />
+                                    <div className='lineGreen'></div>
+                                    <p className='name'>{developer['nome']}</p>
+                                    <p className='job'>{developer['prof']}</p>
+                                    <div className='devUtils'>
+                                        <a href={developer['git']}><img src={githubLogo} /></a>
+                                        <a href={developer['linke']}><img src={likedinWhite} /></a>
+                                        <button>Ver mais</button>
+                                    </div>
+                                </div>
+                                <div className='devButtons'>
+                                    <button className='editButton'>Editar</button>
+                                    <button className='deleteButton' onClick={() =>{modalDeleteDev(); setNameDev(developer['nome'])}}  >Deletar</button>
                                 </div>
                             </div>
-                            <div className='devButtons'>
-                                <button className='editButton'>Editar</button>
-                                <button className='deleteButton' onClick={() => {setNameDev(developer['nome']); deleteDev(nameDev);}} >Deletar</button>
-                            </div>
-                        </div>
-                    )}
-                    <img className='buttonLeftRight' src={right} />
+                        )}
+                    </div>
+                    
+                    
             </main>
             
         </div>
